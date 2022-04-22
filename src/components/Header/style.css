@@ -1,0 +1,15 @@
+#header{
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    font-size: 80px;
+    border-bottom: 1px white solid;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    transition: 0.2s;
+    background: rgb(254,193,99);
+    background: linear-gradient(90deg, rgba(254,193,99,1) 0%, rgba(222,67,19,1) 100%);
+}
