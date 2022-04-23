@@ -1,17 +1,27 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import { ThemeProvider } from "theme-ui";
 import { theme } from "./theme.ts";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Header from "./components/Header/Header"
+import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
+import Repository from "./components/Repository/Repository";
 
-ReactDOM.render(
-    <ThemeProvider theme={theme}>
-        <div>
+const container = document.getElementById("app")
+const root = createRoot(container)
+
+root.render(
+    <Router> 
+        <ThemeProvider theme={theme}>
             <Header />
-            <Home />
-        </div>
-    </ThemeProvider>, 
-    document.getElementById("app")
+            <div id="pages">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/repository" element={<Repository />}>
+                    </Route>
+                </Routes>
+            </div>
+        </ThemeProvider>
+    </Router>  
 );

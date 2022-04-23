@@ -1,3 +1,12 @@
 #home{
-    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+}
+#homeFormBox{
+    max-width:300px;
+    flex-grow: 1;
+}
+h2{
+    text-align: center;
+    font-size: 30px;
 }

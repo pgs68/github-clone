@@ -1,21 +1,34 @@
 import React from "react"
-import { Card, Heading } from "theme-ui"
+import { 
+    Card, 
+    Heading,
+    Label,
+    Input,
+    Box,
+    Button
+} from "theme-ui"
+import { Link } from "react-router-dom"
 import "./style.css";
 
 const Home = () => {
+
+    const getRepository = () => {
+        const author = document.getElementById('author').value
+        const repository = document.getElementById('repository').value
+        window.location.href = '/repository?author=' + author + '&repo=' + repository
+    }
+
     return (
         <div id="home">
-            <Card>
+            <Card id="homeFormBox">
                 <Heading>Find a repository</Heading>
-                <div class="form-input">
-                    <h3>Author</h3>
-                    <input />
-                </div>
-                <div class="form-input">
-                    <h3>Repository</h3>
-                    <input />
-                </div>
-                <button>Find</button>
+                <Box>
+                    <Label htmlFor="author">Author</Label>
+                    <Input name="author" id="author" />
+                    <Label htmlFor="repository">Repository</Label>
+                    <Input name="repository" id="repository" />
+                    <Button onClick={() => getRepository()}>Find</Button>
+                </Box>
             </Card>  
         </div>
     )

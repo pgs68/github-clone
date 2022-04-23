@@ -6,6 +6,7 @@ export const theme: Theme = {
       padding: 2,
       borderRadius: 4,
       boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
+      backgroundColor: '#ffffff21'
     },
     compact: {
       padding: 1,
@@ -14,4 +15,14 @@ export const theme: Theme = {
       borderColor: 'muted',
     },
   },
+  text: {
+    caps: {
+      textTransform: 'uppercase',
+      letterSpacing: '0.2em',
+    },
+    heading: {
+      fontFamily: 'heading',
+      color: '#fff'
+    },
+  }
 }
