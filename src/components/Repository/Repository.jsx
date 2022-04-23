@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from "react"
+import axios from 'axios'
+import { 
+    Card,
+    Spinner,
+    Avatar,
+    Heading,
+    Link
+} from "theme-ui"
+import "./style.css";
+
+import Issue from "../Issue/Issue"
 
 
 function Repository(){
 
     const [author, setAuthor] = useState(null);
     const [repository, setRepository] = useState(null);
+    const [repoInfo, setRepoInfo] = useState(null);
+    const [selectedTab, setSelectedTab] = useState('issues');
+    const [issuesList, setIssuesList] = useState([]);
+    const [pullsList, setPullsList] = useState([]);
+    const [expandedIssue, setExpandedIssue] = useState(null);
 
     useEffect(() => {
         const queryString = window.location.search;
@@ -15,14 +31,94 @@ function Repository(){
 
     useEffect(() => {
         if(author && repository){
-            console.log(author, repository)
+            axios.get(`https://api.github.com/repos/${author}/${repository}`)
+                .then(res => {
+                    setRepoInfo(res.data)
+                })
+            axios.get(`https://api.github.com/repos/${author}/${repository}/issues`)
+                .then(res => {
+                    var issues = [];
+                    var pulls = [];
+                    res.data.map(issue => {
+                        if(issue.pull_request){
+                            pulls.push(issue)
+                        } else {
+                            issues.push(issue)
+                        }
+                    })
+                    setPullsList(pulls);
+                    setIssuesList(issues);
+                })
         }
     }, [author, repository])
 
     return (
-        <div>
-            Aquí va la info de un repositorio
-        </div>
+        <div id="repositoryInfoPage">
+            <Card id="repositoryInfoBox">
+                {
+                    repoInfo ?
+                    (
+                        <div id="repositoryTitleRow">
+                            <div id="infoRow">
+                                <Avatar src={repoInfo.owner.avatar_url}/>
+                                <Heading>{author}/{repository}</Heading>
+                            </div>
+                            <Link id="goBackButton" href="/">Go Back</Link>
+                        </div>
+                    ) : 
+                    (
+                        <div id="spinnerContainer">
+                            <Spinner variant='styles.spinner'/>
+                        </div>
+                    )
+                }
+                {
+                    repoInfo && (
+                        <div id="issuesContainer">
+                            <Card id="issuesAndPullCard">
+                                <div id="tabsRow">
+                                    <div id="issuesTab" onClick={() => setSelectedTab('issues')} className={`tab ${selectedTab === 'issues' ? 'selected' : 'not-selected'}`}>
+                                        ISSUES
+                                    </div>
+                                    <div id="pullTab" onClick={() => setSelectedTab('pull')} className={`tab ${selectedTab === 'pull' ? 'selected' : 'not-selected'}`}>
+                                        PULL REQUEST
+                                    </div>
+                                </div>
+                                {
+                                    selectedTab === 'issues' ? 
+                                    (
+                                        <div id="issuesListContainer">
+                                            {
+                                                issuesList.map(issue => 
+                                                    (<Issue  
+                                                        issueInfo={issue}
+                                                        expanded={expandedIssue == issue.id}
+                                                        setExpandedIssue={setExpandedIssue}
+                                                    />)
+                                                )
+                                            }
+                                        </div>
+                                    ) : 
+                                    (
+                                        <div id="issuesListContainer">
+                                            {
+                                                pullsList.map(issue => 
+                                                    (<Issue  
+                                                        issueInfo={issue}
+                                                        expanded={expandedIssue == issue.id}
+                                                        setExpandedIssue={setExpandedIssue}
+                                                    />)
+                                                )
+                                            }
+                                        </div>
+                                    )
+                                }
+                            </Card>
+                        </div>
+                    )
+                }
+            </Card>     
+        </div>   
     )
 }
 

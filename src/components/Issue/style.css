@@ -1,0 +1,26 @@
+.infoIssueCard:hover{
+    background-color: #ffffff61;
+}
+#infoIssueRow{
+    display: flex;
+    justify-content: space-between;
+}
+#issueTitle{
+    flex-grow:1;
+    font-weight: bold;
+}
+.issueInfo{
+    display: flex;
+    margin: 5px 7px;
+    color: #fff;
+    font-size: 20px;
+}
+.labelsRow{
+    display: flex;
+    flex-wrap: wrap;
+}
+.label{
+    padding: 5px 10px;
+    margin: 0px 4px;
+    border-radius: 15px;
+}

@@ -1,0 +1,77 @@
+#repositoryInfoPage{
+    display: flex;
+    justify-content: center;
+}
+
+#repositoryInfoBox{
+    width: 95%;
+    padding: 20px 0px;
+}
+
+#spinnerContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#repositoryTitleRow{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid white 1px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#infoRow{
+    display: flex;
+    flex-grow: 0;
+    flex-direction: row;
+    margin-left: 20px;
+}
+
+#goBackButton{
+    margin-right: 20px;
+}
+
+#issuesContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#issuesAndPullCard{
+    width: 95%;
+    padding: 0px;
+}
+
+#tabsRow{
+    display: flex;
+}
+
+.tab{
+    width: 50%;
+    text-align: center;
+    padding: 15px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.selected{
+    text-decoration: underline;
+}
+
+.not-selected{
+    border-bottom: #fff 1px solid;
+}
+
+#issuesTab{
+    border-right: #fff 1px solid;
+}
+
+#issuesListContainer{
+    padding: 10px;
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+}
+

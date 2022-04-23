@@ -18,8 +18,7 @@ root.render(
             <div id="pages">
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/repository" element={<Repository />}>
-                    </Route>
+                    <Route path="/repository" element={<Repository />} />
                 </Routes>
             </div>
         </ThemeProvider>

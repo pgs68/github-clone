@@ -24,5 +24,10 @@ export const theme: Theme = {
       fontFamily: 'heading',
       color: '#fff'
     },
-  }
+  },
+  styles: {
+    spinner: {
+      color: 'white',
+    },
+  },
 }
