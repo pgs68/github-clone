@@ -5,7 +5,8 @@ import {
     Spinner,
     Avatar,
     Heading,
-    Link
+    Link,
+    Button
 } from "theme-ui"
 import "./style.css";
 
@@ -21,6 +22,7 @@ function Repository(){
     const [issuesList, setIssuesList] = useState([]);
     const [pullsList, setPullsList] = useState([]);
     const [expandedIssue, setExpandedIssue] = useState(null);
+    const [errorNotFound, setErrorNotFound] = useState(false);
 
     useEffect(() => {
         const queryString = window.location.search;
@@ -49,6 +51,9 @@ function Repository(){
                     setPullsList(pulls);
                     setIssuesList(issues);
                 })
+                .catch(error => {
+                    setErrorNotFound(true)
+                })
         }
     }, [author, repository])
 
@@ -56,8 +61,7 @@ function Repository(){
         <div id="repositoryInfoPage">
             <Card id="repositoryInfoBox">
                 {
-                    repoInfo ?
-                    (
+                    repoInfo && !errorNotFound && (
                         <div id="repositoryTitleRow">
                             <div id="infoRow">
                                 <Avatar src={repoInfo.owner.avatar_url}/>
@@ -65,15 +69,25 @@ function Repository(){
                             </div>
                             <Link id="goBackButton" href="/">Go Back</Link>
                         </div>
-                    ) : 
-                    (
+                    )
+                }
+                {
+                    !repoInfo && !errorNotFound && (
                         <div id="spinnerContainer">
                             <Spinner variant='styles.spinner'/>
                         </div>
                     )
                 }
                 {
-                    repoInfo && (
+                    errorNotFound && (
+                        <div class="errorMessage">
+                            Ups! The repository you are looking for does not seem to exist
+                            <Button variant="primary" onClick={() => window.location.href = '/'}>Search another repository</Button>
+                        </div>
+                    )
+                }
+                {
+                    repoInfo && !errorNotFound && (
                         <div id="issuesContainer">
                             <Card id="issuesAndPullCard">
                                 <div id="tabsRow">

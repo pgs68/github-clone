@@ -15,7 +15,11 @@ const Home = () => {
     const getRepository = () => {
         const author = document.getElementById('author').value
         const repository = document.getElementById('repository').value
-        window.location.href = '/repository?author=' + author + '&repo=' + repository
+        if(author && repository){
+            window.location.href = '/repository?author=' + author + '&repo=' + repository
+        } else {
+            alert('Fill Author and Repository before searching for a respository')
+        }
     }
 
     return (

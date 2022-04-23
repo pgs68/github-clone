@@ -30,4 +30,13 @@ export const theme: Theme = {
       color: 'white',
     },
   },
+  buttons: {
+    primary: {
+      color: '#de4313',
+      bg: 'primary',
+      '&:hover': {
+        bg: 'text',
+      }
+    }
+  },
 }

@@ -24,3 +24,17 @@
     margin: 0px 4px;
     border-radius: 15px;
 }
+.comment{
+    margin: 8px 5px !important;
+    border-left-color: #de4313;
+    background-color: #ffffff26 !important;
+    color: #fff;
+    font-size: 18px;
+}
+.commentInfo{
+    font-size: 21px;
+    font-weight: 700;
+}
+.commentsList{
+    color: #fff;
+}

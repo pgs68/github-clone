@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react"
 import axios from 'axios'
 import { 
     Card,
-    Spinner
+    Spinner,
+    Message
 } from "theme-ui"
 import "./style.css";
 
@@ -28,7 +29,11 @@ const Issue = ({
 
     useEffect(() => {
         if(expanded){
-            
+            axios.get(issueInfo.comments_url)
+                .then(res => {
+                    setMoreInfoIssue(res.data)
+                    console.log(res.data)
+                })
         }
     }, [expanded])
 
@@ -66,16 +71,35 @@ const Issue = ({
                 )
             }
             {
-                expanded && moreInfoIssue &&
+                expanded && moreInfoIssue?.length > 0 &&
                 (
-                    <div>información</div>
+                    <div class="commentsList">
+                        {
+                            moreInfoIssue.map(comment => (
+                                <Message className="comment">
+                                    <div class="commentInfo">
+                                        {`${comment.user.login} at ${formatDate(comment.created_at)}`}
+                                    </div>
+                                    {comment.body}
+                                </Message>
+                            ))
+                        }
+                    </div>
                 )
             }
             {
-                expanded && !moreInfoIssue &&
+                expanded && moreInfoIssue == null &&
                 (
                     <div id="spinnerContainer">
                         <Spinner variant='styles.spinner'/>
+                    </div>
+                )
+            }
+            {
+                expanded && moreInfoIssue?.length == 0 &&
+                (
+                    <div class="commentsList">
+                        No comments yet
                     </div>
                 )
             }
