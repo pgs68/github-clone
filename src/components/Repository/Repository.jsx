@@ -67,7 +67,7 @@ function Repository(){
                                 <Avatar src={repoInfo.owner.avatar_url}/>
                                 <Heading>{author}/{repository}</Heading>
                             </div>
-                            <Link id="goBackButton" href="/">Go Back</Link>
+                            <Button id="goBackButton" variant="primary" onClick={() => window.location.href = '/'}>Go Back</Button>
                         </div>
                     )
                 }

@@ -39,4 +39,11 @@ export const theme: Theme = {
       }
     }
   },
+  forms: {
+    input: {
+    },
+    label: {
+      color: '#fff'
+    }
+  }
 }

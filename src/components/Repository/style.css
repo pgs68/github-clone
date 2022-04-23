@@ -6,6 +6,8 @@
 #repositoryInfoBox{
     width: 95%;
     padding: 20px 0px;
+    margin-top: 5px;
+    margin-bottom: 25px;
 }
 
 #spinnerContainer{

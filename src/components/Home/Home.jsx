@@ -7,7 +7,6 @@ import {
     Box,
     Button
 } from "theme-ui"
-import { Link } from "react-router-dom"
 import "./style.css";
 
 const Home = () => {
@@ -27,11 +26,17 @@ const Home = () => {
             <Card id="homeFormBox">
                 <Heading>Find a repository</Heading>
                 <Box>
-                    <Label htmlFor="author">Author</Label>
-                    <Input name="author" id="author" />
-                    <Label htmlFor="repository">Repository</Label>
-                    <Input name="repository" id="repository" />
-                    <Button onClick={() => getRepository()}>Find</Button>
+                    <div class="inputRow">
+                        <Label htmlFor="author">Author</Label>
+                        <Input name="author" id="author" />
+                    </div>
+                    <div class="inputRow">
+                        <Label htmlFor="repository">Repository</Label>
+                        <Input name="repository" id="repository" />
+                    </div>
+                    <div class="buttonRow">
+                        <Button onClick={() => getRepository()}>Find</Button>
+                    </div>
                 </Box>
             </Card>  
         </div>
